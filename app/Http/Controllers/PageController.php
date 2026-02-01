@@ -6,18 +6,22 @@ class PageController extends Controller
 {
     public function home()
     {
-        $productUrl = route('products.show', ['id' => 5]);
+        $shop = [
+            'name' => 'ShopLaravel',
+            'product_count' => 120,
+            'is_open' => true,
+        ];
 
-        return "Bienvenue sur ShopLaravel ! Produit exemple : $productUrl";
+        return view('home', ['shop' => $shop]);
     }
 
     public function about()
     {
-        return 'A propos de la boutique ShopLaravel.';
+        return view('about');
     }
 
     public function contact()
     {
-        return 'Contactez-nous';
+        return view('contact');
     }
 }
