@@ -12,6 +12,7 @@ class PageController extends Controller
             'name' => 'ShopLaravel',
             'product_count' => Product::count(),
             'is_open' => true,
+            'featured_url' => route('products.show', ['product' => 1]),
         ];
 
         return view('home', ['shop' => $shop]);

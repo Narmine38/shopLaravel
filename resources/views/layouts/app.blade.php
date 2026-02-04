@@ -16,6 +16,14 @@
         </header>
 
         <main>
+            @if (session('success'))
+                <p style="color: #0a7b34;">{{ session('success') }}</p>
+            @endif
+
+            @if (session('error'))
+                <p style="color: #b00020;">{{ session('error') }}</p>
+            @endif
+
             @yield('content')
         </main>
 

@@ -15,8 +15,4 @@ Route::get('/about', [PageController::class, 'about'])
 
 Route::get('/contact', [PageController::class, 'contact']);
 
-Route::get('/products', [ProductController::class, 'index'])
-    ->name('products.index');
-
-Route::get('/products/{id}', [ProductController::class, 'show'])
-    ->name('products.show');
+Route::resource('products', ProductController::class);
