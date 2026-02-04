@@ -8,7 +8,10 @@
     <ul>
         @forelse ($products as $product)
             <li>
-                {{ $product['id'] }} - {{ $product['name'] }} : {{ number_format($product['price'], 2, '.', ' ') }} €
+                <a href="{{ route('products.show', ['id' => $product->id]) }}">
+                    {{ $product->id }} - {{ $product->name }}
+                </a>
+                : {{ number_format($product->price, 2, '.', ' ') }} €
             </li>
         @empty
             <li>Aucun produit pour le moment.</li>

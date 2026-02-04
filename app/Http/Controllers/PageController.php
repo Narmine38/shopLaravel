@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+
 class PageController extends Controller
 {
     public function home()
     {
         $shop = [
             'name' => 'ShopLaravel',
-            'product_count' => 120,
+            'product_count' => Product::count(),
             'is_open' => true,
         ];
 
