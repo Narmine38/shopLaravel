@@ -16,6 +16,11 @@
                     {{ $product->id }} - {{ $product->name }}
                 </a>
                 : {{ number_format($product->price, 2, '.', ' ') }} €
+                @if ($product->category)
+                    - <a href="{{ route('categories.show', $product->category) }}">{{ $product->category->name }}</a>
+                @else
+                    - Sans categorie
+                @endif
                 <a href="{{ route('products.edit', ['product' => $product->id]) }}">Modifier</a>
                 <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST" style="display: inline;" onsubmit="return confirm('Supprimer ce produit ?');">
                     @csrf
