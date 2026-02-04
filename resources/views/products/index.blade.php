@@ -17,6 +17,11 @@
                 </a>
                 : {{ number_format($product->price, 2, '.', ' ') }} €
                 <a href="{{ route('products.edit', ['product' => $product->id]) }}">Modifier</a>
+                <form action="{{ route('products.destroy', ['product' => $product->id]) }}" method="POST" style="display: inline;" onsubmit="return confirm('Supprimer ce produit ?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Supprimer</button>
+                </form>
             </li>
         @empty
             <li>Aucun produit pour le moment.</li>
