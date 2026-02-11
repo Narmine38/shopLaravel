@@ -19,4 +19,9 @@
     @else
         <p>Statut : indisponible</p>
     @endif
+
+    <form action="{{ route('cart.add', $product) }}" method="POST">
+        @csrf
+        <button type="submit">Ajouter au panier</button>
+    </form>
 @endsection

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -26,10 +26,19 @@ class ProductController extends Controller
         return view('products.create', ['categories' => $categories]);
     }
 
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-        $data['slug'] = Str::slug($request->input('name', ''));
+        $data = $request->validate([
+            'category_id' => ['required', 'exists:categories,id'],
+            'name' => ['required', 'string', 'max:150'],
+            'slug' => ['nullable', 'string', 'max:150'],
+            'description' => ['required', 'string'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'stock' => ['required', 'integer', 'min:0'],
+            'is_active' => ['nullable', 'boolean'],
+            'image' => ['nullable', 'image', 'max:2048'],
+        ]);
+        $data['slug'] = Str::slug($data['name']);
         $data['is_active'] = $request->boolean('is_active');
 
         if ($request->hasFile('image')) {

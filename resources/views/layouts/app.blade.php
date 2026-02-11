@@ -12,6 +12,10 @@
                 <a href="{{ route('about') }}">A propos</a>
                 <a href="{{ url('/contact') }}">Contact</a>
                 <a href="{{ route('products.index') }}">Produits</a>
+                @php
+                    $cartCount = array_sum(session('cart', []));
+                @endphp
+                <a href="{{ route('cart.index') }}">Panier ({{ $cartCount }})</a>
             </nav>
         </header>
 
